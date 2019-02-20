@@ -1,0 +1,15 @@
+//This is the stylesheet for The Vault Page
+.vault {
+    /*image used*/
+    background-image: url("WEISSV.png");
+    /* Full height */
+    height: auto;
+    width: auto;
+    /* Center and scale the image nicely */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #2E4F7E;
+}

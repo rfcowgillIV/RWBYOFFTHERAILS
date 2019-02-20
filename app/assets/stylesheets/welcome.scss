@@ -1,0 +1,66 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* This is where the Dust will be store :D Dust in RWBY is a type of material that grants the user the ability to 
+use magic. So since CSS is similar to magic this is where it will be stored.
+*/
+
+//This code is for the Header to be centered on the welcome page
+h1 {
+    text-align: center;
+    color: White;
+}
+
+//This code is for the text right below the header on the welcome page
+h2 {
+    text-align: center;
+    color: White;
+}
+
+//This code should make the body of the index fill the entire browser, so I can display
+//the full image on the welcome page! Yay code!
+.index {
+    /* The image used */
+    background-image: url("RWBYWelcome.png");
+    /* Full height */
+    height: 100vh;
+    width: auto;
+    /* Center and scale the image nicely */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #28252E;
+    color: black;
+    background-position: left bottom;
+}
+
+
+/* unvisited link */
+
+a:link {
+    color: red;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: green;
+}
+
+
+/* mouse over link */
+
+a:hover {
+    color: hotpink;
+}
+
+
+/* selected link */
+
+a:active {
+    color: blue;
+}
