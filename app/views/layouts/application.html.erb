@@ -9,6 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<header class = header4articles>
+<%= link_to 'Home Page', welcome_index_url%>
+<%= link_to 'New article', new_article_path %>
+</header>
+
   <body>
     <%= yield %>
   </body>

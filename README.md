@@ -62,6 +62,8 @@ YOU MEET ALL THE PREREQUIRMENTS YAY! You can now download the project files off 
 
 Link to my Github - https://github.com/rfcowgillIV
 
+Link to this project - https://github.com/rfcowgillIV/RWBYOFFTHERAILS 
+
 once downloaded to your machine make sure to unzip the files where you wish to store them. Then open your terminal or command prompt and CD into the project.
 
 typically the command will look someithing similar to 
@@ -91,4 +93,11 @@ this is the url that the project is displayed in locally on your machine.
 Step 5
 
 The best step! Explore the site!!
+
+
+Step 6 (bonus)
+
+In order to post to the site, there is a secruity feature. You can find the username and password on The Vault Page.
+
+
 

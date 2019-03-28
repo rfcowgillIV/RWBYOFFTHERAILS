@@ -8,10 +8,15 @@
         color: black;
     }
     
+    body {
+        background-color: #3A3A3A;
+    }
+    
     .body4articles {
         background-image: url("YANGINDEX.png");
         background-repeat: no-repeat;
         background-size: cover;
         color: white;
-        background-color: #3A3A3A;
+        // background-color: #3A3A3A;
+        min-height: 100vh;
     }
