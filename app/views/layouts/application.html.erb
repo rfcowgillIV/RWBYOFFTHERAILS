@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blog</title>
+    <title><%= content_for(:title) || "RWBY Off The Rails" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# 2026 update: Propshaft serves every stylesheet in app/assets/stylesheets with :app.
+        Turbolinks was removed (unmaintained), so the data-turbolinks-track attributes went too. %>
+    <%= stylesheet_link_tag :app %>
+    <%= javascript_include_tag "application", defer: true %>
   </head>
 
-<header class = header4articles>
-<%= link_to 'Home Page', welcome_index_url%>
-<%= link_to 'New article', new_article_path %>
-</header>
+  <%# BUG FIX (2026): each page used to put its own <body class="..."> tag INSIDE this
+      layout's <body>, and the header sat outside <body> entirely. That's invalid HTML -
+      it only worked because browsers quietly merge stray body tags. Pages now set
+      their background class with  content_for :body_class, "index"  instead. %>
+  <body class="<%= content_for(:body_class) %>">
+    <header class="header4articles">
+      <%= link_to "Home Page", root_path %>
+      <%= link_to "New article", new_article_path %>
+    </header>
 
-  <body>
+    <%# New in 2026: success/error messages (e.g. "Comment posted.") show up here. %>
+    <% if notice.present? %>
+      <p class="flash notice" role="status"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="flash alert" role="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,25 +1,25 @@
-// Place all the styles related to the Welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Place all the styles related to the Welcome controller here. */
+/* Rails 8 (Propshaft) loads every .css file in this folder automatically. */
+/* 2026 update: this was a .scss file; it only used plain CSS, so it is now .css (no Sass compiler needed). */
 
 /* This is where the Dust will be store :D Dust in RWBY is a type of material that grants the user the ability to 
 use magic. So since CSS is similar to magic this is where it will be stored.
 */
 
-//This code is for the Header to be centered on the welcome page
+/* This code is for the Header to be centered on the welcome page */
 h1 {
     text-align: center;
     color: White;
 }
 
-//This code is for the text right below the header on the welcome page
+/* This code is for the text right below the header on the welcome page */
 h2 {
     text-align: center;
     color: White;
 }
 
-//This code should make the body of the index fill the entire browser, so I can display
-//the full image on the welcome page! Yay code!
+/* This code should make the body of the index fill the entire browser, so I can display */
+/* the full image on the welcome page! Yay code! */
 .index {
     /* The image used */
     background-image: url("RWBYWelcome.png");

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# Runs Brakeman, a security scanner for Rails apps. Added in the 2026 update.
+# Usage: bin/brakeman
+require "rubygems"
+require "bundler/setup"
+
+ARGV.unshift("--ensure-latest")
+
+load Gem.bin_path("brakeman", "brakeman")

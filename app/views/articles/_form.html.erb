@@ -1,6 +1,6 @@
+<%# 2026 update: `local: true` was dropped - forms are regular (non-AJAX) by default in Rails 7+. %>
+<%= form_with model: @article do |form| %>
 
-<%= form_with model: @article, local: true do |form| %>
- 
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -14,19 +14,19 @@
       </ul>
     </div>
   <% end %>
- 
+
   <p>
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true, minlength: 5, maxlength: 200 %>
   </p>
- 
+
   <p>
     <%= form.label :text %><br>
-    <%= form.text_area :text %>
+    <%= form.text_area :text, maxlength: 20000 %>
   </p>
- 
+
   <p>
     <%= form.submit %>
   </p>
- 
+
 <% end %>

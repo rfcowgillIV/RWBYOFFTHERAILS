@@ -5,7 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version - Created with Version 2.2.5
+> **2026 update:** this app was upgraded from Rails 5.2 to Rails 8.1 for security fixes.
+> See [SECURITY_UPDATES.md](SECURITY_UPDATES.md) for every change and why.
+> Quick start: `bundle install && bin/rails db:prepare && bin/rails server`
+
+* Ruby version - Originally created with Version 2.2.5. Now requires Ruby 3.2 or newer (3.3.6 recommended)
 
 * System dependencies = minimal :D
 
@@ -31,7 +35,7 @@ the return should look something similar to this
 
 ruby 2.3.1p112
 
-Please note Rails requires Ruby version 2.2.2 or later. If the version number returned is less than that number, you'll need to install a fresh copy of Ruby.
+Please note Rails 8 requires Ruby version 3.2 or later. If the version number returned is less than that number, you'll need to install a fresh copy of Ruby.
 
 Step 2
 
@@ -53,7 +57,7 @@ To verify that you have everything installed correctly, you should be able to ru
 
 $ rails --version
 
-If it says something like "Rails 5.2.1", you are ready to continue.
+If it says something like "Rails 8.1.0", you are ready to continue.
 
 
 Step 3
@@ -78,9 +82,14 @@ Step 4
 Once you are in the project then you need to run the rails server in order to access the database accociated with the website.
 This is a fan site that allows fans to go on and post articles about anything realted to the show: fan theroys, favorite epsisodes, quotes ECT. So some articles will already be loaded by default, feel free to read them at your leasure.
 
+ First install the project's gems and set up the database (only needed once):
+
+bundle install
+bin/rails db:prepare
+
 In order to run the rails server then type the command 
 
-rails server 
+bin/rails server 
 
 into your termianl/ command prompt and the rails server will then proceed to run. Once the command is through running you are able to access the site.
 
@@ -97,7 +106,9 @@ The best step! Explore the site!!
 
 Step 6 (bonus)
 
-In order to post to the site, there is a secruity feature. You can find the username and password on The Vault Page.
+In order to post to the site, there is a security feature. When running the site on your own computer, you can find the username and password on The Vault Page.
+
+On a real (production) server, the Vault stays sealed: set your own login with the environment variables BLOG_EDITOR_NAME and BLOG_EDITOR_PASSWORD. Without them the site is read-only. (Details in SECURITY_UPDATES.md.)
 
 
 

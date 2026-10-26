@@ -1,62 +1,65 @@
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+source "https://rubygems.org"
 
-ruby '2.6.0'
+# =============================================================================
+# SECURITY UPDATE (2026) - see SECURITY_UPDATES.md for the full story.
+#
+# Rails 5.2.2 and Ruby 2.6 are both end-of-life and had dozens of published
+# security holes (remote code execution, XSS, denial of service, SQL issues in
+# Rails, Rack, Nokogiri, Loofah, Puma, ...). That's almost certainly what
+# GitHub's security alert emails were about.
+#
+# This Gemfile moves the app to Rails 8.1 on a supported Ruby. Gems that Rails 8
+# no longer needs were removed:
+#   - sass-rails, uglifier, coffee-rails -> replaced by Propshaft (plain CSS/JS)
+#   - turbolinks                         -> unmaintained; not needed here
+#   - jbuilder                           -> the app never served JSON
+#   - spring, listen                     -> removed from the Rails defaults
+#   - byebug                             -> replaced by Ruby's built-in "debug"
+#   - chromedriver-helper                -> deprecated; selenium-webdriver
+#                                           downloads drivers by itself now
+#
+# Gemfile.lock was deleted because it pinned all the vulnerable versions.
+# Run `bundle install` once to create a fresh one, then commit it.
+# Out with the old Gems, in with the new - this blog is back on the rails.
+# =============================================================================
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+ruby ">= 3.2.0"
+
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 8.1.0"
+# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
+gem "propshaft"
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem "sqlite3", ">= 2.1"
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", ">= 6.4"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem "bootsnap", require: false
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  # Run it any time with:  bin/brakeman
+  gem "brakeman", require: false
+
+  # Checks Gemfile.lock against the Ruby security advisory database.
+  # Run it any time with:  bundle exec bundle-audit check --update
+  gem "bundler-audit", require: false
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "web-console"
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

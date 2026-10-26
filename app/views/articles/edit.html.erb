@@ -1,7 +1,10 @@
+<% content_for :title, "Edit article | RWBY Off The Rails" %>
 
 <h1>Edit article</h1>
- 
-<%= render 'form' %>
- 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+
+<%= render "form" %>
+
+<%# BUG FIX (2026): this link said "Edit" and pointed back to this same edit page.
+    It now goes to the article itself. %>
+<%= link_to "Show", article_path(@article) %> |
+<%= link_to "Back", articles_path %>

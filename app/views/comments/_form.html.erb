@@ -1,12 +1,13 @@
-
-<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+<%# 2026 update: `local: true` was dropped - forms are regular (non-AJAX) by default in
+    Rails 7+. Builds the comment from scratch so the list above isn't affected. %>
+<%= form_with(model: [ @article, Comment.new ]) do |form| %>
   <p>
     <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
+    <%= form.text_field :commenter, required: true, maxlength: 100 %>
   </p>
   <p>
     <%= form.label :body %><br>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, required: true, maxlength: 5000 %>
   </p>
   <p>
     <%= form.submit %>

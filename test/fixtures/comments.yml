@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  commenter: MyString
-  body: MyText
+  commenter: Weiss
+  body: Dolt.
   article: one
 
 two:
-  commenter: MyString
-  body: MyText
+  commenter: Nora
+  body: Did someone say pancakes?
   article: two
