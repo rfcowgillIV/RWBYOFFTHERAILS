@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_000918) do
+# 2026 update: switched to the versioned schema format used by current Rails ([5.2] = the version that created these tables).
+ActiveRecord::Schema[5.2].define(version: 2019_01_23_000918) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"

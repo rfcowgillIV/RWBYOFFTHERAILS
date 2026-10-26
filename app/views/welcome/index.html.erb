@@ -1,10 +1,10 @@
-<body class = index>
+<% content_for :body_class, "index" %>
+
 <h1>WELCOME TO RWBY OFF THE RAILS!</h1>
-<h2>(a fan blog... and its also a gun)<h2>
+<%# BUG FIX (2026): this <h2> was "closed" with another <h2>, so the whole rest of the
+    page turned into one giant heading. %>
+<h2>(a fan blog... and its also a gun)</h2>
 
-<%= link_to 'Enter The Fray!', controller: 'articles' %>
-<%= link_to 'New article', new_article_path %>
-<%= link_to 'The Vault', passwords_path %>
-
-</body>
-
+<%= link_to "Enter The Fray!", articles_path %>
+<%= link_to "New article", new_article_path %>
+<%= link_to "The Vault", passwords_path %>

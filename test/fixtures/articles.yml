@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  text: MyText
+  title: Ruby's Crescent Rose Explained
+  text: It's a scythe. It's also a gun. Science!
 
 two:
-  title: MyString
-  text: MyText
+  title: Team JNPR Appreciation Post
+  text: Pancakes forever.

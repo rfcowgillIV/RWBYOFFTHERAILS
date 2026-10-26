@@ -1,41 +1,33 @@
+<% content_for :title, "#{@article.title} | RWBY Off The Rails" %>
 
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
 </p>
- 
-<p>
+
+<div>
   <strong>Text:</strong>
-  <%= @article.text %>
-</p>
- 
+  <%# 2026: simple_format keeps the writer's line breaks (it strips unsafe HTML first, so it's
+      XSS-safe). It makes its own <p> tags, so the wrapper became a <div>. %>
+  <%= simple_format(@article.text) %>
+</div>
+
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
   </p>
- 
+
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
 <% end %>
- 
+
 <h2>Add a comment:</h2>
-<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
- 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<%# The duplicate inline form was swapped for the existing comments/_form partial. %>
+<%= render "comments/form" %>
+
+<%= link_to "Edit", edit_article_path(@article) %> |
+<%= link_to "Back", articles_path %>

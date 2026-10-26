@@ -10,6 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ * 2026 update: Rails 8 uses Propshaft, which does not read the "require" lines
+ * that used to be here. Every .css file in this folder is loaded automatically.
  */
+/* 2026 update: styles for the new success/error messages shown at the top of the page. */
+.flash {
+  max-width: 40rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+.flash.notice { background-color: #d4edda; color: #155724; }
+.flash.alert  { background-color: #f8d7da; color: #721c24; }

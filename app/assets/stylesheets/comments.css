@@ -1,0 +1,7 @@
+/* Place all the styles related to the Comments controller here. */
+/* Rails 8 (Propshaft) loads every .css file in this folder automatically. */
+/* 2026 update: this was a .scss file; it only used plain CSS, so it is now .css (no Sass compiler needed). */
+.comments {
+    /* BUG FIX (2026): was "BLACKEC.png", a typo - the image file is BLAKEC.png, so it never showed. */
+    background-image: url("BLAKEC.png");
+}

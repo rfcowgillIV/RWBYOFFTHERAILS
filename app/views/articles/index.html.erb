@@ -1,7 +1,9 @@
+<% content_for :title, "Fan Articles | RWBY Off The Rails" %>
 
-<div class = body4articles>
+<div class="body4articles">
 
-<h1>Fan Aritcles</h1>
+<%# Typo fix (2026): "Aritcles" -> "Articles". Spell-checker semblance unlocked. %>
+<h1>Fan Articles</h1>
 
 <table>
   <tr>
@@ -9,19 +11,24 @@
     <th>Preview</th>
     <th colspan="3"></th>
   </tr>
- 
+
   <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td><%= link_to 'Show (Lumos)', article_path(article) %></td>
-      <td><%= link_to 'Edit (Erasers!)', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy (Lazers)', article_path(article),
+      <%# 2026 update: the "Preview" column used to print the ENTIRE article. Now it's a
+          short preview. (Rails still escapes it, so HTML typed into an article can't run.) %>
+      <td><%= truncate(article.text, length: 120, separator: " ") %></td>
+      <td><%= link_to "Show (Lumos)", article_path(article) %></td>
+      <td><%= link_to "Edit (Erasers!)", edit_article_path(article) %></td>
+      <%# SECURITY/BUG FIX (2026): this was  link_to ..., method: :delete  which needed
+          rails-ujs JavaScript (removed in Rails 7+) and would have silently done a GET.
+          button_to makes a real DELETE form protected by Rails' CSRF token.
+          application.js shows the "Are you sure?" confirmation. %>
+      <td><%= button_to "Destroy (Lazers)", article_path(article),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+              form: { data: { confirm: "Are you sure?" } } %></td>
     </tr>
   <% end %>
 </table>
 
 </div>
-

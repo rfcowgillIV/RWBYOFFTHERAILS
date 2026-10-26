@@ -1,0 +1,50 @@
+# Automated tests (added October 2026)
+#
+# Every push and pull request to master runs on GitHub's servers:
+#   1. installs Ruby and all gems
+#   2. sets up a test database
+#   3. runs the test suite (bin/rails test)
+#   4. runs Brakeman (Rails security scanner) and bundler-audit (known-vulnerable gems)
+# A red X on a pull request means something failed - click "Details" to see what.
+# Testing, testing... is this thing on the Rails?
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Show resolved Gemfile.lock
+        run: cat Gemfile.lock
+
+      - name: Prepare test database
+        run: bin/rails db:test:prepare
+
+      - name: Run tests
+        run: bin/rails test
+
+      - name: Brakeman security scan
+        run: bin/brakeman --no-pager --quiet --format text
+
+      - name: Check gems for known vulnerabilities
+        run: bundle exec bundle-audit check --update
