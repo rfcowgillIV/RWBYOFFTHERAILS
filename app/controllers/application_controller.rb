@@ -29,6 +29,18 @@ class ApplicationController < ActionController::Base
   # error when `except:` names an action a controller doesn't have (e.g. comments
   # has no index or show), and this filter is shared by every controller.
   READ_ONLY_ACTIONS = %w[index show].freeze
+
+  # SECURITY UPDATE (2026): password-guessing protection.
+  # Each visitor (by IP address) gets 10 tries per minute at any page that needs
+  # the editor login. A real editor never notices; a bot trying thousands of
+  # passwords gets "429 Too Many Requests" and has to wait. This line must come
+  # BEFORE require_editor so wrong-password attempts are counted too.
+  # (Uses Rails 8's built-in rate_limit, which stores counts in Rails.cache.)
+  # Slow down there, Grimm - no brute-forcing the Vault.
+  rate_limit to: 10, within: 1.minute,
+             unless: -> { READ_ONLY_ACTIONS.include?(action_name) },
+             with: -> { head :too_many_requests }
+
   before_action :require_editor, unless: -> { READ_ONLY_ACTIONS.include?(action_name) }
 
   helper_method :editor_login_hint

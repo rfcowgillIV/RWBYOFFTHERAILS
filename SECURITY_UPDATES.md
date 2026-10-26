@@ -160,3 +160,14 @@ Manual checks:
   error message plus this file should point to the change involved.
 - `config/credentials.yml.enc` was left in place. Its decryption key (`config/master.key`) was
   never committed, so it can't be read. In production, set `SECRET_KEY_BASE` instead (see §2).
+
+## Ongoing protection (added later in October 2026)
+
+- **Password-guessing protection:** `ApplicationController` now uses Rails 8's built-in
+  `rate_limit`. Each IP address gets 10 requests per minute to pages that need the editor
+  login. After that, it gets `429 Too Many Requests` until the minute is up. Wrong-password
+  attempts count too, so bots can't try thousands of passwords. (In tests, the cache is
+  switched off, so the limit never triggers there. To see it work, run the server and hit
+  "New article" 11 times in a minute.)
+- **`SECURITY.md`** tells people how to report a security problem privately instead of in a public issue. For the "Report a vulnerability" button to appear, turn on **Settings → Code security → Private vulnerability reporting**.
+- **CodeQL code scanning** (`.github/workflows/codeql.yml`): GitHub's free scanner checks the code for security bugs on every push and pull request to `master`, and weekly. Results appear under **Security → Code scanning**. Dependabot also keeps the workflow's own tools updated.
